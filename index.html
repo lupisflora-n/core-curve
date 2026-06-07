@@ -656,7 +656,7 @@
             window.openProfile = function () {
                 document.getElementById('modal-count').textContent = '✔ PROFILE';
                 const typeEl = document.getElementById('modal-type');
-                typeEl.innerHTML = '';
+                typeEl.textContent = '';
                 document.getElementById('modal-label').textContent = '';
                 
                 const profileHTML = `
@@ -693,7 +693,7 @@
             function openModal(data, count) {
                 document.getElementById('modal-count').textContent = '✔ YES ' + count + '個';
                 const typeEl = document.getElementById('modal-type');
-                typeEl.innerHTML = data.type; // HTMLとして埋め込み（改行対応）
+                typeEl.textContent = data.type;
                 typeEl.style.color = data.color;
                 document.getElementById('modal-label').textContent = data.label;
                 document.getElementById('modal-desc').innerHTML = data.desc;
