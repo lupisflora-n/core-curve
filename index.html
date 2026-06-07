@@ -14,17 +14,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Core & Curveは、女性のためのボディメイク・姿勢改善・90日プログラムを提案するパーソナルサポートLPです。無料診断で今の体型悩みと改善ステップを確認できます。">
-    <link rel="canonical" href="https://lupisflora-n.github.io/core-curve/">
+    <link rel="canonical" href="https://core-curve.vercel.app/">
     <meta property="og:title" content="Core & Curve | 腹筋をやめて、美しいお腹を育てる。">
     <meta property="og:description" content="Core & Curveは、女性のためのボディメイク・姿勢改善・90日プログラムを提案するパーソナルサポートLPです。無料診断で今の体型悩みと改善ステップを確認できます。">
-    <meta property="og:url" content="https://lupisflora-n.github.io/core-curve/">
+    <meta property="og:url" content="https://core-curve.vercel.app/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://lupisflora-n.github.io/core-curve/logo_trimmed.png">
+    <meta property="og:image" content="https://core-curve.vercel.app/logo_trimmed.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Core & Curve | 腹筋をやめて、美しいお腹を育てる。">
     <meta name="twitter:description" content="Core & Curveは、女性のためのボディメイク・姿勢改善・90日プログラムを提案するパーソナルサポートLPです。無料診断で今の体型悩みと改善ステップを確認できます。">
-    <meta name="twitter:url" content="https://lupisflora-n.github.io/core-curve/">
-    <meta name="twitter:image" content="https://lupisflora-n.github.io/core-curve/logo_trimmed.png">
+    <meta name="twitter:url" content="https://core-curve.vercel.app/">
+    <meta name="twitter:image" content="https://core-curve.vercel.app/logo_trimmed.png">
     <title>Core & Curve | 腹筋をやめて、美しいお腹を育てる。</title>
     <link rel="icon" href="ロゴ.jpg" type="image/jpeg">
     <!-- シュッとした明朝体 -->
@@ -620,6 +620,12 @@
                     else data = results.B;
 
                     openModal(data, checkedCount);
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'diagnosis_complete', {
+                            diagnosis_type: data.type,
+                            checked_count: checkedCount
+                        });
+                    }
 
                     btn.innerText = '✓ 診断完了';
                     btn.style.background = 'rgba(219, 192, 158, 0.2)';

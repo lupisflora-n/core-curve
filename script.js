@@ -5,6 +5,30 @@ document.addEventListener('DOMContentLoaded', function () {
     const countDisplay = document.getElementById('monitor-count-display');
     if (countDisplay) countDisplay.textContent = MONITOR_COUNT;
 
+    const trackEvent = (eventName, params) => {
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, params);
+        }
+    };
+
+    document.querySelectorAll('a[href="https://lin.ee/cWn1rMJa"]').forEach(link => {
+        link.addEventListener('click', () => {
+            trackEvent('generate_lead', {
+                method: 'line',
+                link_text: link.textContent.trim()
+            });
+        });
+    });
+
+    document.querySelectorAll('a[href="https://instagram.com/ayaka_sue22"], a[href="https://note.com/grace_by_ayaka"]').forEach(link => {
+        link.addEventListener('click', () => {
+            trackEvent('social_link_click', {
+                link_url: link.href,
+                link_text: link.textContent.trim() || link.getAttribute('title') || ''
+            });
+        });
+    });
+
     const fadeEls = document.querySelectorAll('.scroll-fade, .hope-shine');
     const glowEls = document.querySelectorAll('.glow-reveal');
 
