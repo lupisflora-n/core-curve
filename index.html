@@ -479,17 +479,24 @@
                 // 初回チェック
                 checkVisibilityOnLoad();
 
+                const releaseScrollLock = () => {
+                    document.body.classList.remove('is-locked');
+                };
+
+                // ユーザーが操作した場合は、演出待ちよりも操作性を優先する
+                ['touchstart', 'pointerdown', 'wheel', 'keydown'].forEach(eventName => {
+                    window.addEventListener(eventName, releaseScrollLock, { once: true, passive: true });
+                });
+
                 // 更新時（すでにスクロールされている場合）はロックを即座に解除
                 if (window.scrollY > 50) {
-                    document.body.classList.remove('is-locked');
+                    releaseScrollLock();
                     // スクロールヒントも不要なので即非表示
                     const scrollHint = document.querySelector('.scroll-hint');
                     if (scrollHint) scrollHint.style.display = 'none';
                 } else {
                     // 通常（トップから開始）の場合は6秒後に解除
-                    setTimeout(() => {
-                        document.body.classList.remove('is-locked');
-                    }, 6000);
+                    setTimeout(releaseScrollLock, 6000);
                 }
 
                 // 通常のスクロール監視（rootMarginを少し甘くして、スクロール時の体験をスムーズに）
